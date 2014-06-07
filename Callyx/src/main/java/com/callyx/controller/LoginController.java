@@ -1,5 +1,5 @@
 
-package com.callyx.model;
+package com.callyx.controller;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
