@@ -44,10 +44,18 @@
     <dependency>
      	<groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-core</artifactId>
-	    <version>4.3.0.CR2</version>
+	    <version>4.3.5.Final</version>
     </dependency>
     
-
+    
+    <dependency>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>hibernate3-maven-plugin</artifactId>
+	<version>3.0</version>
+</dependency>
+    
+    
+    
         <dependency>  
             <groupId>junit</groupId>  
             <artifactId>junit</artifactId>  

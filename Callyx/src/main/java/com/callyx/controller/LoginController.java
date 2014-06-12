@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 		public String logout(ModelMap model) {return "login";}
 	 
 		
-		
     }
 
 
