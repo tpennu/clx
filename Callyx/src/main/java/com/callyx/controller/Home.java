@@ -2,21 +2,23 @@
 package com.callyx.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-public class Home extends AbstractController{
-	 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request,
-		HttpServletResponse response) throws Exception {
- 
-		ModelAndView model = new ModelAndView("Hello");
-		model.addObject("msg", "hello world");
- 
-		return model;
-	}
+@Controller
+public class Home {
+	
+	@RequestMapping(value="/LoginSuccess.spring", method = RequestMethod.GET)
+	public String printWelcome(ModelMap model)
+	{
+     	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		model.addAttribute("username", name);
+		model.addAttribute("message", "Login Verification example");
+		return "hello";
+ 	}
 }

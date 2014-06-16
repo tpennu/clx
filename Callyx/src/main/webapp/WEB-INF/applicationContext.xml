@@ -6,8 +6,4 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans   
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
   
-<bean id="login" class="Callyx.login">  
-<property name="successmessage" value="You are successfully logged in!"/>  
-<property name="errormessage" value="Sorry, username or password error!"/>  
-</bean>  
 </beans>  

@@ -1,41 +1,51 @@
 
 package com.callyx.controller;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 	
-    @Controller
-	public class LoginController
-	{
-	 
-		@RequestMapping(value="/login_success", method = RequestMethod.GET)
-		public String printWelcome(ModelMap model)
-		{
-	     	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String name = user.getUsername();
-			model.addAttribute("username", name);
-			model.addAttribute("message", "Login Verification example");
-			return "hello";
-	 	}
-	 
-		@RequestMapping(value="/login", method = RequestMethod.GET)
-		public String login(ModelMap model) {return "login";}
+@Controller
+public class LoginController
+{
+ 
+	@RequestMapping(value="/Login.spring", method = RequestMethod.POST)
+	public ModelAndView login(@RequestParam("username") String userName, @RequestParam("password") String password) {
+
+		String message = "Invalid credentials!!";
+		ModelAndView modelAndView = new ModelAndView("login", "message", message);
 		
-		@RequestMapping(value="/login_error", method = RequestMethod.GET)
-		public String loginerror(ModelMap model)
+		if (userName !=null && password !=null && userName.equals(password))
 		{
-	     	model.addAttribute("error", "true");
-			return "login";
+			message = userName;
+			modelAndView = new ModelAndView("login_success", "message", message);
 		}
 		
-		@RequestMapping(value="/logout", method = RequestMethod.GET)
-		public String logout(ModelMap model) {return "login";}
-	 
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/Index.spring", method = RequestMethod.GET)
+	public ModelAndView login() {
 		
-    }
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping(value="/LoginError.spring", method = RequestMethod.GET)
+	public String loginerror(ModelMap model)
+	{
+     	model.addAttribute("error", "true");
+		return "login";
+	}
+	
+	@RequestMapping(value="/Logout.spring", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		return "logout";
+	}
+ 
+	
+}
 
 
